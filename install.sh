@@ -68,3 +68,7 @@ cp "$SCRIPT_DIR/helix/config.toml" "$HELIX_CONFIG_DIR/config.toml"
 cp "$SCRIPT_DIR/helix/languages.toml" "$HELIX_CONFIG_DIR/languages.toml"
 
 echo -e "${GREEN}✅ Installation complete!${NC}"
+echo ""
+echo "📚 Optional: Setup knowledge management system"
+echo "   Run: ./scripts/setup-knowledge.sh"
+echo ""
