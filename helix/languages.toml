@@ -1,0 +1,5 @@
+[[language]]
+name = "markdown"
+language-servers = ["marksman"]
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "markdown"] }
