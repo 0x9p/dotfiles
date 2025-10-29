@@ -5,7 +5,7 @@ Personal configuration files for development tools and applications.
 ## Applications
 
 - Helix Editor
-- Knowledge Management System
+- Friday Task Management System
 
 ## Quick Install
 
@@ -55,48 +55,48 @@ glow -t document.md
 
 ---
 
-## Knowledge Management
+## Friday Task Management
 
 ### Setup
 
-Run the setup script to configure a new knowledge base:
+Run the setup script to configure a new Friday base:
 
 ```bash
-./scripts/setup-knowledge.sh
+./scripts/setup-friday.sh
 ```
 
 You'll be prompted for:
-- Path to your knowledge directory (e.g., `~/Documents/knowledge`, `~/work-kb`, `~/personal-kb`)
-- Task prefix for this knowledge base (e.g., `PROJ`, `TASK`, `WORK`)
+- Path to your Friday directory (e.g., `~/Documents/friday`, `~/work-friday`, `~/personal-friday`)
+- Task prefix for this Friday base (e.g., `PROJ`, `TASK`, `WORK`)
 
 The script will:
 1. Create directory structure if needed (`00_templates`, `01_daily`, `02_tasks`)
-2. Copy templates to the knowledge directory
-3. Create `.friday` config file in the knowledge base root
+2. Copy templates to the Friday directory
+3. Create `.friday` config file in the Friday base root
 4. Add shell functions to `~/.zshrc` (only once)
 
-### Multiple Knowledge Bases
+### Multiple Friday Bases
 
-You can have multiple knowledge bases on the same system! Each knowledge base:
+You can have multiple Friday bases on the same system! Each Friday base:
 - Has its own directory
 - Has its own task prefix
 - Contains a `.friday` config file in its root
-- Works independently from other knowledge bases
+- Works independently from other Friday bases
 
 **Example setup:**
 ```bash
-# Work knowledge base
-./scripts/setup-knowledge.sh
-# Path: ~/work-kb
+# Work Friday base
+./scripts/setup-friday.sh
+# Path: ~/work-friday
 # Prefix: WORK
 
-# Personal knowledge base  
-./scripts/setup-knowledge.sh
-# Path: ~/personal-kb
+# Personal Friday base  
+./scripts/setup-friday.sh
+# Path: ~/personal-friday
 # Prefix: PERS
 ```
 
-Friday commands automatically detect which knowledge base you're in by looking for the `.friday` config file in parent directories (similar to how git works).
+Friday commands automatically detect which Friday base you're in by looking for the `.friday` config file in parent directories (similar to how git works).
 
 ### Commands
 
@@ -149,6 +149,15 @@ friday-set-priority 2 low       # or: fsp 2 low
 ```
 Available priorities: `high`, `medium`, `low`
 
+**Set parent task:**
+```bash
+friday-set-parent 5 2           # or: fspt 5 2  (Set TASK2 as parent of TASK5)
+friday-set-parent 5 3           # or: fspt 5 3  (Change parent to TASK3, replaces previous)
+friday-set-parent 5 none        # or: fspt 5 none  (Remove parent)
+```
+Creates task hierarchy - useful for breaking down large tasks into subtasks.  
+**Note:** Each task can have only ONE parent task. Setting a new parent replaces the existing one.
+
 ### Short Aliases
 
 All commands have convenient short aliases:
@@ -161,12 +170,13 @@ All commands have convenient short aliases:
 | `flt` | `friday-list-tasks` | List all tasks |
 | `fss` | `friday-set-status` | Set task status |
 | `fsp` | `friday-set-priority` | Set task priority |
+| `fspt` | `friday-set-parent` | Set parent task |
 | `fh` | `friday-help` | Show help |
 
 ### File Structure
 
 ```
-knowledge/
+friday/
 ├── .friday                  # Configuration file (auto-generated)
 ├── 00_templates/
 │   ├── daily_tasks_template.md
@@ -182,10 +192,10 @@ knowledge/
 
 ### How It Works
 
-1. Navigate to any directory within your knowledge base
+1. Navigate to any directory within your Friday base
 2. Run any `friday-*` command (e.g., `fnd`, `fnt`)
 3. Friday searches upward for `.friday` config file
 4. Loads configuration (task prefix) from the file
-5. Uses the directory containing `.friday` as the knowledge base root
+5. Uses the directory containing `.friday` as the Friday base root
 
-This allows you to work from any subdirectory within your knowledge base!
+This allows you to work from any subdirectory within your Friday base!
