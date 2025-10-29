@@ -545,6 +545,7 @@ friday-set-parent() {
                 getline; print
                 print ""
                 print "None"
+                print ""
                 skip = 1
                 next
             }
@@ -585,6 +586,7 @@ friday-set-parent() {
             getline; print
             print ""
             print "[🎯 " parent_id ": " parent_title "](../02_tasks/" parent_filename ")"
+            print ""
             skip = 1
             next
         }
