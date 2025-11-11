@@ -32,6 +32,7 @@ formatter = { command = "prettier", args = ["--parser", "babel"] }
 name = "go"
 language-servers = ["gopls", "golangci-lint-lsp"]
 auto-format = true
+formatter = { command = "goimports" }
 
 [language-server.gopls]
 command = "gopls"

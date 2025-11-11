@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script to install Go language support for Helix editor
-# Installs: gopls, golangci-lint, golangci-lint-langserver, delve
+# Installs: gopls, goimports, golangci-lint, golangci-lint-langserver, delve
 
 set -e
 
@@ -31,6 +31,18 @@ if command -v gopls &> /dev/null; then
 else
     go install golang.org/x/tools/gopls@latest
     echo "   ✓ gopls installed"
+fi
+
+# Install goimports (import formatter)
+echo "📦 Installing goimports..."
+if command -v goimports &> /dev/null; then
+    echo "   ✓ goimports is already installed"
+    echo "   Updating to latest version..."
+    go install golang.org/x/tools/cmd/goimports@latest
+    echo "   ✓ goimports updated"
+else
+    go install golang.org/x/tools/cmd/goimports@latest
+    echo "   ✓ goimports installed"
 fi
 
 # Install delve (Go debugger)
@@ -89,6 +101,7 @@ cat << 'EOF'
 name = "go"
 language-servers = ["gopls", "golangci-lint-lsp"]
 auto-format = true
+formatter = { command = "goimports" }
 
 [language-server.gopls]
 command = "gopls"
