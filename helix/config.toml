@@ -1,8 +1,0 @@
-theme = "catppuccin_macchiato"
-
-[editor]
-auto-format = true
-
-[editor.lsp]
-display-messages = true
-display-inlay-hints = true
