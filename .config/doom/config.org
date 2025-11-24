@@ -32,9 +32,28 @@
 '(org-level-1 :inherit outline-1 :height 1.6)
 '(org-document-title :height 1.8 :bold t :underline nil))
 
-(setq org-directory "~/org/")
+(setq org-agenda-files (directory-files-recursively "~/workspace" "\\.org$"))
+(setq org-directory "~/workspace")
 (setq org-modern-table-vertical 1)
 (setq org-modern-table t)
+
+(after! org
+  (setq org-todo-keywords
+        '((sequence
+           "TODO(t)"
+           "IN PROGRESS(p)"
+           "IN REVIEW(r)"
+           "IN TESTING(s)"
+           "BLOCKED(b)"
+           "DONE(d)")))
+
+  (setq org-todo-keyword-faces
+        '(("TODO"        . (:foreground "#7aa2f7" :weight bold))
+          ("IN PROGRESS" . (:foreground "#f78c6c" :weight bold))
+          ("IN REVIEW"   . (:foreground "#e0af68" :weight bold))
+          ("IN TESTING"  . (:foreground "#73daca" :weight bold))
+          ("BLOCKED"     . (:foreground "#f7768e" :weight bold))
+          ("DONE"        . (:foreground "#9ece6a" :weight bold)))))
 
 #+end_src
 
@@ -50,6 +69,7 @@
 
 #+begin_src emacs-lisp
 
+(setq select-enable-clipboard t)
 (setq confirm-kill-emacs nil)
 
 #+end_src
