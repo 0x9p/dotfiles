@@ -40,6 +40,9 @@ brew install shellcheck
 
 # Markdown processing
 brew install markdown
+
+# GNU ls
+brew install coreutils
 ```
 
 ---
